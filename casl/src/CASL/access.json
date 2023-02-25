@@ -1,0 +1,10 @@
+{
+    "admin":{
+        "subject":"all",
+        "action": "manage"
+    },
+    "user":{
+        "subject":["li","listName","List","input"],
+        "action": ["read"]
+    }
+}
