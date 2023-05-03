@@ -1,0 +1,26 @@
+name: Create Branch on Sprint Start
+
+on:
+  issues:
+    types: [opened, reopened]
+    # Replace <SPRINT_ISSUE_LABEL> with the label you use to identify sprint issues in Jira.
+    # For example, if you use the label "sprint", replace it with "sprint" (without quotes).
+    labels:
+      - <SPRINT_ISSUE_LABEL>
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: 'develop'
+    - name: Create branch
+      run: |
+        # Replace <BRANCH_NAME_PREFIX> with a prefix for the branch name, e.g. "sprint-" (without quotes).
+        # Replace <ISSUE_NUMBER> with the issue number of the sprint issue in Jira.
+        # Replace <GITHUB_ACTOR> with your GitHub username.
+        branch_name="<BRANCH_NAME_PREFIX><ISSUE_NUMBER>-${GITHUB_ACTOR}"
+        git checkout -b "$branch_name"
+        git push --set-upstream origin "$branch_name"
