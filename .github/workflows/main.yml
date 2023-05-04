@@ -1,6 +1,9 @@
 name: Create Branch on Sprint Start
 
 on:
+  jira:
+    types: [jiraSprintStarted]
+    
   issues:
     types: [opened, reopened]
     labels:
